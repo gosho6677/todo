@@ -31,18 +31,22 @@ const addTodo = function() {
 	const id = todos.length ? todos[todos.length-1].id + 1 : 1;
 
 	const newTodo = {
-		"id": id,
 		"title": todoText,
 		"completed": false
 	};
 
 	// add new todo object to the end of todos array:
-	todos = [...todos, newTodo];
+	// todos = [...todos, newTodo];
 
 	// save to local storage
 	// note, that localStorage.setItem() expects the second argument to be string
-	localStorage.setItem('todos',JSON.stringify(todos));
-
+	fetch(`${url}/todos`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'aplication/json'
+		},
+		body: JSON.stringify(newTodo)
+	})
 	// render todos:
 	renderTodos();
 
@@ -86,7 +90,7 @@ const nodes = {
 	'totalItemsCount': document.querySelector('.todoApp .total>.output')
 }
 
-let localStorage = window.localStorage;
+const url = 'http://localhost:3000';
 
 // create todos array of todo objects from LocalStorage data
 // note, that localStorage.getItem() returns data as string
