@@ -76,7 +76,6 @@ nodes.addTodoInput.addEventListener('keyup', function(e) {
 	}
 })
 
-// remove Todo Item:
 nodes.todoListUL.addEventListener('click', e => {
 	if(e.target.style['text-decoration'] !== 'line-through') {
 		e.target.style = "text-decoration: line-through;"
